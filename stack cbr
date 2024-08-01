@@ -1,0 +1,93 @@
+//stack using top as a pointer 
+#include<stdio.h>
+#define max 10
+void push(int[],int*);
+void pop(int[],int*);
+void peek(int[],int*);
+void display(int[],int*);
+void main()
+{
+int ch;
+int a[max];
+int p=-1;
+
+do
+{
+printf("enter 1 for push\n enter 2 for pop\n enter 3 for peek\n enter 4 for display\n");
+scanf("%d",&ch);
+switch(ch)
+{
+case 1:
+push(a,&p);
+break;
+case 2:
+pop(a,&p);
+break;
+case 3:
+peek(a,&p);
+break;
+case 4:
+display(a,&p);
+break;
+default:
+break;
+}
+}
+while(ch<=4);
+}
+
+void push(int a[max],int *p)
+{
+if(*p==max-1)
+{
+printf("overflow");
+}
+else
+{
+int x;
+scanf("%d",&x);
+(*p)++;
+a[*p]=x;
+}
+}
+void peek(int a[max],int* p)
+{
+if(*p==-1)
+{
+printf("stack is empty");
+}
+else
+{
+printf("%d",a[*p]);
+}
+}
+
+
+void pop(int a[max],int* p)
+{
+if(*p==-1)
+{
+printf("underflow");
+}
+else{
+printf("\npop item=%d",a[*p]);
+	(*p--);
+}
+}
+void display(int a[max],int* p)
+{
+
+if(*p==-1)
+{
+printf("underflow");
+}
+else
+{
+for(int i=0;i<=*p;i++)
+{
+printf("%d",a[i]);
+}
+}
+}
+
+	  
