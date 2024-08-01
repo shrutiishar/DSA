@@ -1,0 +1,98 @@
+//stack using dma
+
+#include<stdio.h>
+#define max 10
+void push(int[],int*);
+void pop(int[],int*);
+void peek(int[],int*);
+void display(int[],int*);
+void main()
+{
+int ch;
+int a[max];
+int p=-1;
+int *arr;
+arr=(int*)malloc(max*sizeof(int));
+
+
+
+do
+{
+printf("enter 1 for push\n enter 2 for pop\n enter 3 for peek\n enter 4 for display\n");
+scanf("%d",&ch);
+switch(ch)
+{
+case 1:
+push(arr,&p);
+break;
+case 2:
+pop(arr,&p);
+break;
+case 3:
+peek(arr,&p);
+break;
+case 4:
+display(arr,&p);
+break;
+default:
+break;
+}
+}
+while(ch<=4);
+}
+
+void push(int* arr,int *p)
+{
+if(*p==max-1)
+{
+printf("overflow");
+}
+else
+{
+int x;
+scanf("%d",&x);
+(*p)++;
+*arr(*p)=x;
+}
+}
+void peek(int* arr,int* p)
+{
+if(*p==-1)
+{
+printf("stack is empty");
+}
+else
+{
+printf("%d",*arr+*p);
+}
+}
+
+
+void pop(int* arr,int* p)
+{
+if(*p==-1)
+{
+printf("underflow");
+}
+else{
+printf("\npop item=%d",*arr+*p);
+	(*p--);
+}
+}
+void display(int* arr,int* p)
+{
+
+if(*p==-1)
+{
+printf("underflow");
+}
+else
+{
+for(int i=0;i<=*p;i++)
+{
+printf("%d",*(arr+i));
+}
+}
+}
+
+	  
