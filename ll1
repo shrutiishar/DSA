@@ -1,0 +1,27 @@
+//linked list using self refrential structure
+
+#include<stdio.h>
+typedef struct list{
+	int date;
+	float m;
+	struct list*next;
+} sl;
+main()
+{
+    sl A,B,C,*p=NULL;	
+	A.date=10;
+	A.m=2.5;
+	B.date=30;
+	B.m=0.5;
+	C.date=30;
+	C.m=1.5;
+	A.next=&B;
+	B.next=&C;
+	C.next=NULL;
+	 p= &A;
+	    while(p!=NULL)
+	    {
+		printf("%d %f ->",p->date,p->m);
+		p=p->next;
+	    }
+}
