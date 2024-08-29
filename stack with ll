@@ -1,0 +1,83 @@
+//stack using linked list
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct stack{
+	int data;
+	struct stack* next;
+}s;
+s* push(s*);
+s* pop(s*);
+void disp(s*);
+void main()
+{
+	s* top=NULL;
+	int ch;
+	do{
+		printf("\n 1.PUSH \n2.POP \n3.DISPLAY\n");
+		scanf("%d",&ch);
+		switch(ch)
+		{
+			case 1:
+				top=push(top);
+				break;
+			case 2:
+				top=pop(top);
+				break;
+			case 3:
+				disp(top);
+				break;
+		}
+	}while(ch<=3);
+}
+s* push(s*tp)
+{
+	int v;
+	s* p=NULL;
+	p=(s*)malloc(sizeof(s));
+	if(p!=NULL)
+	{
+		printf("enter values");
+		scanf("%d",&v);
+		p->data=v;
+		p->next=tp;
+		tp=p;
+	}
+	else
+	{
+		printf("no memory available");
+	}
+return(tp);
+}
+s* pop(s* tp)
+{
+	s* p=NULL;
+	if(tp==NULL)
+	{
+		printf("\n empty");
+	}
+	else
+	{
+	p=tp;
+	printf("\npoped %d",tp->data);
+	tp=tp->next;
+	free(p);
+	}
+return(tp);
+}
+
+void disp(s* tp)
+{
+	
+	 if(tp==NULL)
+	 {
+	 	printf("empty");
+	 }
+	 else
+	 {
+		while(tp!=NULL)
+		{
+			printf("%d\n",tp->data);
+			tp=tp->next;
+		}
+	}
+}
