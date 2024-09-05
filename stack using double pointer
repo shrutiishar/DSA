@@ -1,0 +1,78 @@
+//stack using double pointer 
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct linked{
+	int data;
+	struct linked*next;
+}s;
+void push(s**);
+void pop(s**);
+void disp(s*);
+
+int main()
+{
+	s*top=NULL;
+	int ch;
+	do{
+		printf("\n 1.PUSH \n2.POP \n3.DISPLAY\n");
+		scanf("%d",&ch);
+		switch(ch)
+		{
+			case 1:
+				push(&top);
+				break;
+			case 2:
+				pop(&top);
+				break;
+			case 3:
+				disp(top);
+				break;
+			case 4:
+				exit(0);
+			default:
+				printf("invalid choice");
+		}
+	}while(ch<=3);
+	return 0;
+}
+
+void push(s**tp)
+{
+	s*p=NULL;
+	int x;
+	p=(s*)malloc(sizeof(s));
+	if(p!=NULL)
+	{
+		scanf("%d",&x);
+		p->data=x;
+		p->next=*tp;
+		*tp=p;
+	}
+	else
+		printf("memory not available");
+}
+void pop(s**tp)
+{
+	s*p=NULL;
+	if(*tp==NULL)
+	{
+		printf("stack is empty");
+	}
+	else
+	{
+		p=*tp;
+		printf("the poped element is %d",(*tp) -> data);
+		*tp=(*tp)->next;
+		free(p);
+	}
+}
+void disp(s *tp)
+{
+	if(tp==NULL)
+		printf("the stack is empty");
+	while(tp!=NULL)
+	{
+		printf("%d",tp->data);
+		tp=tp->next;
+	}
+}
