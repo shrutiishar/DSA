@@ -1,0 +1,85 @@
+//circular linked list 
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct linked{
+	int data;
+	struct linked*next;
+}sl;
+void cenq(sl**,sl**);
+void cdeq(sl**,sl**);
+void disp(sl*);
+int main()
+{
+int ch;
+sl*f=NULL;
+sl*r=NULL;
+do{
+		printf("\n 1.enqueue \n2.dequeue \n3.display\n");
+		scanf("%d",&ch);
+		switch(ch)
+		{
+			case 1:
+				cenq(&f,&r);
+				break;
+			case 2:
+				cdeq(&f,&r);
+				break;
+			case 3:
+				disp(f);
+				break;
+		}
+	}while(ch<=3);
+}
+void cenq(sl**f1,sl**r1)
+{
+	sl*p=NULL;
+	p=(sl*)malloc(sizeof(sl));
+	if(p!=NULL)
+	{
+		printf("enter data");
+		scanf("%d",&(p->data));
+		if(*f1==NULL && *r1==NULL)
+		{
+			*f1=*r1=p;
+		}
+		else 
+		{
+			(*r1)->next=p;
+			*r1=p;
+		}
+	(*r1)->next=*f1;
+	}
+}
+
+void cdeq(sl**f1,sl**r1)
+{
+	sl*p=NULL;
+	p=*f1;
+	printf("the value deleted is %d",p->data);
+	*f1=(*f1)->next;
+	if(*f1==*r1)
+		*f1=*r1=NULL;
+	else                                                                                   
+		(*r1)->next=*f1;
+	free(p);
+}
+
+void disp(sl*f)
+{
+sl*p=f;
+if(f==NULL)
+{
+	printf("circular queue is empty");
+}
+else 
+{
+do 
+{  
+printf("%d",p->data);
+p=p->next;
+}
+while(p!=f);}}
+	
+
+	
+ 
