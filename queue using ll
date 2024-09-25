@@ -1,0 +1,110 @@
+//queue using ll
+#include<stdio.h>
+#include<stdlib.h>
+#define MAX 5
+typedef struct queue{
+    int data;
+    struct queue * next;
+}q;
+q* enqueue(q*);
+q* dequeue(q*);
+void display(q*);
+int main()
+{
+   q* f=NULL;
+   q* r=NULL;
+   int ch;
+   do{
+       printf("enter value for ch");
+       scanf("%d",&ch);
+       switch(ch)
+       {
+            case 1:
+                r=enqueue(r);
+                    if(f==NULL)
+                        {
+                            f=r;
+                        }
+                        break;
+            case 2:
+                f=dequeue(f);
+                if(f==NULL)
+                {
+                    r=NULL;
+                }
+                break;
+            case 3:
+                display(f);
+                break;
+            case 0:
+                exit(0);
+                break;
+       }
+   }while(ch!=0);
+   return 0;
+}
+q* enqueue(q* r)
+{
+    q*p=NULL;
+    p=(q*)malloc(sizeof(q));
+    if(p!=NULL){
+        int x;
+        scanf("%d",&x);
+        p->data=x;
+        if(r==NULL)
+        {
+            r=p;
+        }
+        else{
+            r->next=p;
+            p->next=NULL;
+            r=p;
+        }
+        return r;
+    }
+    else{
+        printf("memory not allocated");
+        return r;
+    }
+}
+q* dequeue(q* f)
+{
+    q*p=NULL;
+    if(f==NULL)
+    {
+        printf("queue is empty");
+        return f;
+    }
+    else{
+        
+        p=f;
+        printf("the popped element is %d",p->data);
+        if(f->next==NULL)
+        {
+            f=NULL;
+            return f;
+        }
+        else{
+            f=f->next;
+            return f;
+        }
+    }
+    free(p);
+}
+void display(q*f)
+{
+    if(f==NULL)
+    {
+        printf("the queue is empty");
+    }
+    else{
+        q*p=NULL;
+        p=f;
+        while(p->next!=NULL)
+        {
+            printf("%d",p->data);
+            p=p->next;
+        }
+        printf("%d",p->data);
+    }
+}
