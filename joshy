@@ -1,0 +1,111 @@
+//joshy
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef struct circular{
+    int data;
+    int index;
+    struct circular * next;
+}cl;
+void input(cl**,cl**);
+void display(cl**,cl**);
+void josephus(cl**,int);
+int main()
+{
+    int ch,i=0;
+    cl*start=NULL;
+    cl*stop=NULL;
+    do{
+        printf("enter the ch");
+        scanf("%d",&ch);
+        switch(ch)
+        {
+            case 1:
+                input(&start,&stop);
+                i++;
+                break;
+            case 2:
+                display(&start,&stop);
+                break;
+            case 3:
+                josephus(&start,i);
+                break;
+            case 4:
+                exit(0);
+                break;
+        }
+}while(ch<=4);
+return 0;
+}
+void input(cl** start,cl** stop)
+{
+    int x;
+    cl*p=NULL;
+    p=(cl*)malloc(sizeof(cl));
+    printf("enter the element");
+    scanf("%d",&x);
+    p->data=x;
+    p->next=NULL;
+    if((*start)==NULL && (*stop)==NULL)
+    {
+        *start=p;
+        *stop=p;
+        
+    }
+    else
+    {
+        (*stop)->next=p;
+        *stop=p;
+        
+    }
+    
+    (*stop)->next=(*start);
+}
+void display(cl** start,cl** stop)
+{
+    if(*start==NULL)
+    {
+        printf("the linked list is empty");
+        
+    }
+    else
+    {
+        cl*p=NULL;
+        p=(*start);
+        while(p!=(*stop))
+        {
+            printf("%d ",p->data);
+            p=p->next;
+        }
+        printf("%d ",p->data);
+         p=p->next;
+         printf("%d ",p->data);
+    }
+}
+void josephus(cl** start,int i)
+{
+    int k;
+    cl*l=NULL;
+    cl*p=NULL;
+    l=(*start);
+    printf("enter the value for k");
+    scanf("%d",&k);
+     printf("%d\n",i);
+    while(i>1)
+    {
+            for (int count = 1; count < k; count++) {
+            p = l;             // Previous node
+            l = l->next;      // Move to the next node
+        }
+        i--;
+         p->next=l->next;
+         if (l == *start) {
+            *start = l->next; // Update start if necessary
+        }
+        l=l->next;
+    }
+    
+    printf("%d",p->data);
+    
+   
+}
